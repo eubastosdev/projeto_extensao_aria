@@ -81,14 +81,66 @@
   });
 
   // Os vídeos são fornecidos pela equipe. O placeholder some somente quando um MP4 válido é encontrado.
-  for (const [videoId, shellId] of [["main-video", "main-video-shell"], ["libras-video", "libras-video-shell"]]) {
-    const video = document.getElementById(videoId);
-    const shell = document.getElementById(shellId);
-    video.addEventListener("loadedmetadata", () => shell.classList.add("is-ready"));
-    video.addEventListener("error", () => shell.classList.remove("is-ready"));
-    // Se os metadados chegaram antes deste script rodar, o evento já passou: confira o estado atual.
-    if (video.readyState >= HTMLMediaElement.HAVE_METADATA) shell.classList.add("is-ready");
+  const mainVideo = document.getElementById("main-video");
+  const librasVideo = document.getElementById("libras-video");
+  const mediaShells = [document.getElementById("main-video-shell"), document.getElementById("libras-video-shell")];
+  const librasCaption = document.getElementById("libras-caption");
+  let syncEnabled = false;
+
+  // A sincronia só liga quando os dois vídeos existem; com um só, o player funciona sozinho.
+  function updateSync() {
+    syncEnabled = mediaShells.every((shell) => shell.classList.contains("is-ready"));
+    if (!syncEnabled) return;
+    librasVideo.muted = true; // O áudio vem do vídeo principal.
+    librasCaption.textContent = "O vídeo em Libras acompanha o vídeo principal: reproduzir, pausar ou avançar um deles controla os dois.";
   }
+
+  [mainVideo, librasVideo].forEach((video, index) => {
+    const shell = mediaShells[index];
+    const setReady = (ready) => { shell.classList.toggle("is-ready", ready); updateSync(); };
+    video.addEventListener("loadedmetadata", () => setReady(true));
+    video.addEventListener("error", () => setReady(false));
+    // Se os metadados chegaram antes deste script rodar, o evento já passou: confira o estado atual.
+    if (video.readyState >= HTMLMediaElement.HAVE_METADATA) setReady(true);
+  });
+
+  // Sincronia nos dois sentidos: quem usa só o player de Libras (por exemplo, em tela cheia) também controla o principal.
+  // Cada espelhamento só age quando há diferença, o que evita que um vídeo fique respondendo ao outro em laço.
+  const maxDrift = 0.3; // segundos de diferença tolerados antes de realinhar
+
+  function mirror(source, target) {
+    // Se o alvo for mais curto e a origem já passou do fim dele, não há o que acompanhar.
+    const canFollow = () => !Number.isFinite(target.duration) || source.currentTime < target.duration - maxDrift;
+    const alignTime = () => {
+      if (canFollow() && Math.abs(target.currentTime - source.currentTime) > maxDrift) target.currentTime = source.currentTime;
+    };
+    const follow = () => {
+      if (!syncEnabled || !target.paused || !canFollow()) return;
+      alignTime();
+      const started = target.play();
+      if (started) started.catch(() => { /* O navegador pode bloquear; o vídeo de origem segue tocando. */ });
+    };
+    source.addEventListener("play", follow);
+    source.addEventListener("pause", () => {
+      if (syncEnabled && !source.ended && !target.paused) target.pause();
+    });
+    source.addEventListener("seeking", () => { if (syncEnabled) alignTime(); });
+    source.addEventListener("ratechange", () => {
+      if (syncEnabled && target.playbackRate !== source.playbackRate) target.playbackRate = source.playbackRate;
+    });
+    return { alignTime, follow };
+  }
+
+  const librasFollowsMain = mirror(mainVideo, librasVideo);
+  mirror(librasVideo, mainVideo);
+  // O principal é a referência: durante a reprodução, corrige pequenos atrasos do vídeo de Libras
+  // e o retoma se ele tiver ficado parado (por exemplo, ao voltar para um trecho que ele cobre).
+  mainVideo.addEventListener("timeupdate", () => {
+    if (!syncEnabled || mainVideo.paused || mainVideo.seeking || librasVideo.seeking) return;
+    librasFollowsMain.alignTime();
+    librasFollowsMain.follow();
+  });
+  mainVideo.addEventListener("ended", () => { if (syncEnabled) librasVideo.pause(); });
 
   const examples = {
     imagem: {
