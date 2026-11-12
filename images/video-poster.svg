@@ -3,7 +3,7 @@
   <rect width="1280" height="720" fill="url(#g)"/>
   <circle cx="1010" cy="140" r="300" fill="none" stroke="#3b6468" stroke-width="2"/>
   <circle cx="1010" cy="140" r="220" fill="none" stroke="#3b6468" stroke-width="2"/>
-  <rect x="100" y="120" width="165" height="36" rx="18" fill="#ec7655"/>
+  <rect x="100" y="120" width="200" height="36" rx="18" fill="#ec7655"/>
   <text x="121" y="145" fill="#14243c" font-family="Arial,sans-serif" font-size="18" font-weight="bold">APRESENTAÇÃO</text>
   <text x="100" y="302" fill="#fff" font-family="Arial,sans-serif" font-size="93" font-weight="bold">Web para</text>
   <text x="100" y="410" fill="#9ce0cf" font-family="Arial,sans-serif" font-size="93" font-weight="bold">Todos</text>

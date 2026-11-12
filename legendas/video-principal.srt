@@ -1,0 +1,76 @@
+1
+00:00:00,000 --> 00:00:03,911
+Olá! Eu sou um avatar
+criado por inteligência artificial,
+
+2
+00:00:03,911 --> 00:00:06,724
+e vou falar sobre acessibilidade digital.
+
+3
+00:00:07,174 --> 00:00:09,712
+Hoje, quase tudo passa pela internet.
+
+4
+00:00:09,712 --> 00:00:14,789
+Mas, no Brasil, mais de dezoito milhões
+de pessoas têm alguma deficiência,
+
+5
+00:00:14,789 --> 00:00:20,140
+e menos de três em cada cem sites passam
+em todos os testes de acessibilidade.
+
+6
+00:00:20,590 --> 00:00:22,649
+A barreira não está na pessoa.
+
+7
+00:00:22,649 --> 00:00:25,324
+Está no site feito sem pensar em todos.
+
+8
+00:00:25,774 --> 00:00:27,064
+Veja exemplos.
+
+9
+00:00:27,064 --> 00:00:31,318
+Uma imagem sem descrição não chega
+a quem usa leitor de telas.
+
+10
+00:00:31,318 --> 00:00:35,160
+Um vídeo sem legenda e sem Libras
+exclui pessoas surdas.
+
+11
+00:00:35,160 --> 00:00:39,894
+Um botão que só funciona com o mouse
+impede quem navega pelo teclado.
+
+12
+00:00:39,894 --> 00:00:42,501
+E pouco contraste dificulta a leitura.
+
+13
+00:00:42,951 --> 00:00:46,998
+Engenharia da acessibilidade é planejar,
+construir e testar
+
+14
+00:00:46,998 --> 00:00:50,086
+pensando em todas as pessoas,
+desde o início.
+
+15
+00:00:50,536 --> 00:00:53,143
+Acessibilidade não é favor. É direito.
+
+16
+00:00:53,143 --> 00:00:56,711
+Uma web para todos começa
+nas escolhas de quem cria.
+
+17
+00:00:56,711 --> 00:00:58,000
+Faça a sua parte.
