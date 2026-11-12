@@ -58,8 +58,20 @@
   });
   applyPreferences();
 
+  // A altura do cabeçalho fixo muda com a largura da tela e o tamanho do texto.
+  // O CSS usa esse valor para que âncoras e o painel de ajustes não fiquem escondidos atrás dele.
+  const header = document.querySelector(".site-header");
+  const syncHeaderHeight = () => root.style.setProperty("--header-h", `${header.offsetHeight}px`);
+  syncHeaderHeight();
+  if ("ResizeObserver" in window) new ResizeObserver(syncHeaderHeight).observe(header);
+  else window.addEventListener("resize", syncHeaderHeight);
+
   document.addEventListener("click", (event) => {
     if (menu.open && !menu.contains(event.target)) menu.open = false;
+  });
+  // Fecha o painel quando o foco do teclado sai dele, para não cobrir o conteúdo seguinte.
+  menu.addEventListener("focusout", (event) => {
+    if (event.relatedTarget && !menu.contains(event.relatedTarget)) menu.open = false;
   });
   menu.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
@@ -74,6 +86,8 @@
     const shell = document.getElementById(shellId);
     video.addEventListener("loadedmetadata", () => shell.classList.add("is-ready"));
     video.addEventListener("error", () => shell.classList.remove("is-ready"));
+    // Se os metadados chegaram antes deste script rodar, o evento já passou: confira o estado atual.
+    if (video.readyState >= HTMLMediaElement.HAVE_METADATA) shell.classList.add("is-ready");
   }
 
   const examples = {
@@ -82,7 +96,7 @@
       title: "A informação está na imagem. E se você não puder vê-la?",
       icon: "✦", visualTitle: "Inscrições abertas", visualDetail: "Workshop de acessibilidade · 18h",
       barrier: "Sem texto alternativo, o conteúdo da imagem pode não chegar a quem usa leitor de telas.",
-      fix: "Descreva a informação essencial no atributo alt ou em texto próximo.",
+      fix: "Descreva a informação essencial no atributo <code>alt</code> ou em texto próximo.",
       code: '<img src="cartaz.jpg" alt="Inscrições abertas para workshop de acessibilidade às 18h">'
     },
     teclado: {
@@ -107,14 +121,17 @@
   const codePanel = document.getElementById("lab-code");
   const codeButton = document.getElementById("show-code");
   const visual = document.getElementById("lab-visual");
+  const labStatus = document.getElementById("lab-status");
 
   function selectExample(key) {
     const example = examples[key];
     if (!example) return;
+    let label = "";
     choices.forEach((button) => {
       const selected = button.dataset.lab === key;
       button.classList.toggle("is-selected", selected);
       button.setAttribute("aria-pressed", String(selected));
+      if (selected) label = button.querySelector("strong").textContent;
     });
     document.getElementById("lab-category").textContent = example.category;
     document.getElementById("lab-demo-title").textContent = example.title;
@@ -122,11 +139,12 @@
     visual.querySelector("strong").textContent = example.visualTitle;
     visual.querySelector("small").textContent = example.visualDetail;
     document.getElementById("lab-barrier").textContent = example.barrier;
-    document.getElementById("lab-fix").textContent = example.fix;
+    document.getElementById("lab-fix").innerHTML = example.fix; // Texto fixo deste arquivo, com <code>.
     codePanel.querySelector("code").textContent = example.code;
     codePanel.hidden = true;
     codeButton.setAttribute("aria-expanded", "false");
     codeButton.innerHTML = 'Ver exemplo de código <span aria-hidden="true">↓</span>';
+    labStatus.textContent = `Exemplo exibido: ${label}.`;
   }
 
   choices.forEach((button) => button.addEventListener("click", () => selectExample(button.dataset.lab)));
