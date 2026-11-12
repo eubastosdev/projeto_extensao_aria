@@ -1,88 +1,63 @@
 WEBVTT
 
-NOTE Tempos estimados pelo roteiro. Ajuste-os à duração real do áudio depois de gerar a narração.
+NOTE Tempos estimados para um vídeo de cerca de 58 segundos. Ajuste-os ao áudio real do vídeo final.
 
-00:00:00.000 --> 00:00:03.000
-Olá! Este é o Web para Todos.
+00:00:00.000 --> 00:00:03.911
+Olá! Eu sou um avatar
+criado por inteligência artificial,
 
-00:00:03.000 --> 00:00:07.000
-Um projeto de extensão universitária
-sobre acessibilidade digital.
+00:00:03.911 --> 00:00:06.724
+e vou falar sobre acessibilidade digital.
 
-00:00:08.000 --> 00:00:12.200
-A internet conecta pessoas
-a estudos, trabalho e serviços.
+00:00:07.174 --> 00:00:09.712
+Hoje, quase tudo passa pela internet.
 
-00:00:12.200 --> 00:00:15.100
-Uma imagem sem descrição é uma barreira.
+00:00:09.712 --> 00:00:14.789
+Mas, no Brasil, mais de dezoito milhões
+de pessoas têm alguma deficiência,
 
-00:00:15.100 --> 00:00:17.200
-Um vídeo sem legenda também.
+00:00:14.789 --> 00:00:20.140
+e menos de três em cada cem sites passam
+em todos os testes de acessibilidade.
 
-00:00:17.200 --> 00:00:20.700
-Assim como um botão
-que só funciona com o mouse.
+00:00:20.590 --> 00:00:22.649
+A barreira não está na pessoa.
 
-00:00:20.700 --> 00:00:25.600
-As diretrizes WCAG organizam a acessibilidade
-em quatro princípios:
+00:00:22.649 --> 00:00:25.324
+Está no site feito sem pensar em todos.
 
-00:00:25.600 --> 00:00:29.000
-perceptível, operável,
-compreensível e robusto.
+00:00:25.774 --> 00:00:27.064
+Veja exemplos.
 
-00:00:30.000 --> 00:00:34.400
-No laboratório, você escolhe uma barreira
-e vê a correção.
+00:00:27.064 --> 00:00:31.318
+Uma imagem sem descrição não chega
+a quem usa leitor de telas.
 
-00:00:34.400 --> 00:00:37.400
-Aqui, uma imagem sem texto alternativo.
+00:00:31.318 --> 00:00:35.160
+Um vídeo sem legenda e sem Libras
+exclui pessoas surdas.
 
-00:00:37.400 --> 00:00:41.100
-Quem usa leitor de telas
-não recebe a informação.
+00:00:35.160 --> 00:00:39.894
+Um botão que só funciona com o mouse
+impede quem navega pelo teclado.
 
-00:00:41.100 --> 00:00:45.000
-A correção é descrever o essencial
-no atributo alt.
+00:00:39.894 --> 00:00:42.501
+E pouco contraste dificulta a leitura.
 
-00:00:46.000 --> 00:00:49.000
-Este site também funciona só com teclado.
+00:00:42.951 --> 00:00:46.998
+Engenharia da acessibilidade é planejar,
+construir e testar
 
-00:00:49.000 --> 00:00:52.000
-Use Tab para avançar e Enter para ativar.
+00:00:46.998 --> 00:00:50.086
+pensando em todas as pessoas,
+desde o início.
 
-00:00:52.000 --> 00:00:55.000
-O foco aparece destacado
-em cada elemento.
+00:00:50.536 --> 00:00:53.143
+Acessibilidade não é favor. É direito.
 
-00:00:56.000 --> 00:00:59.000
-No menu Ajustar leitura,
-você aumenta o texto,
+00:00:53.143 --> 00:00:56.711
+Uma web para todos começa
+nas escolhas de quem cria.
 
-00:00:59.000 --> 00:01:02.000
-ativa o alto contraste
-e destaca os links.
-
-00:01:03.000 --> 00:01:06.600
-Este vídeo tem legenda, transcrição
-e versão em Libras.
-
-00:01:06.600 --> 00:01:10.000
-A narração foi gerada
-por inteligência artificial.
-
-00:01:11.000 --> 00:01:14.800
-Acessibilidade começa
-quando escutamos as pessoas,
-
-00:01:14.800 --> 00:01:18.200
-reconhecemos barreiras
-e criamos alternativas.
-
-00:01:18.200 --> 00:01:21.200
-Experimente o laboratório e faça o quiz.
-
-00:01:21.200 --> 00:01:25.000
-Depois, leve essas práticas
-para os seus projetos.
+00:00:56.711 --> 00:00:58.000
+Faça a sua parte.
