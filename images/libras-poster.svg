@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720" role="img" aria-label="Capa da versão em Libras do vídeo Web para Todos">
+  <defs><linearGradient id="g" x2="1" y2="1"><stop stop-color="#173a42"/><stop offset="1" stop-color="#14243c"/></linearGradient></defs>
+  <rect width="960" height="720" fill="url(#g)"/>
+  <circle cx="760" cy="130" r="260" fill="none" stroke="#3b6468" stroke-width="2"/>
+  <circle cx="760" cy="130" r="180" fill="none" stroke="#3b6468" stroke-width="2"/>
+  <rect x="80" y="110" width="232" height="36" rx="18" fill="#ec7655"/>
+  <text x="101" y="135" fill="#14243c" font-family="Arial,sans-serif" font-size="18" font-weight="bold">VERSÃO EM LIBRAS</text>
+  <text x="80" y="300" fill="#fff" font-family="Arial,sans-serif" font-size="84" font-weight="bold">Web para</text>
+  <text x="80" y="398" fill="#9ce0cf" font-family="Arial,sans-serif" font-size="84" font-weight="bold">Todos</text>
+  <text x="84" y="462" fill="#d3e6e1" font-family="Arial,sans-serif" font-size="27">Acompanha o vídeo principal.</text>
+  <circle cx="770" cy="520" r="84" fill="#ec7655"/>
+  <path d="m746 475 76 45-76 45Z" fill="#14243c"/>
+</svg>
