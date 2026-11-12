@@ -97,7 +97,15 @@
 
   [mainVideo, librasVideo].forEach((video, index) => {
     const shell = mediaShells[index];
-    const setReady = (ready) => { shell.classList.toggle("is-ready", ready); updateSync(); };
+    const setReady = (ready) => {
+      shell.classList.toggle("is-ready", ready);
+      // Ajusta a moldura à proporção real do vídeo (em pé ou deitado), sem barras laterais.
+      if (ready && video.videoWidth && video.videoHeight) {
+        shell.style.setProperty("--video-ratio", String(video.videoWidth / video.videoHeight));
+        shell.classList.add("has-ratio");
+      }
+      updateSync();
+    };
     video.addEventListener("loadedmetadata", () => setReady(true));
     video.addEventListener("error", () => setReady(false));
     // Se os metadados chegaram antes deste script rodar, o evento já passou: confira o estado atual.
@@ -178,12 +186,10 @@
   function selectExample(key) {
     const example = examples[key];
     if (!example) return;
-    let label = "";
     choices.forEach((button) => {
       const selected = button.dataset.lab === key;
       button.classList.toggle("is-selected", selected);
       button.setAttribute("aria-pressed", String(selected));
-      if (selected) label = button.querySelector("strong").textContent;
     });
     document.getElementById("lab-category").textContent = example.category;
     document.getElementById("lab-demo-title").textContent = example.title;
@@ -196,12 +202,9 @@
     codePanel.hidden = true;
     codeButton.setAttribute("aria-expanded", "false");
     codeButton.innerHTML = 'Ver exemplo de código <span aria-hidden="true">↓</span>';
-<<<<<<< HEAD
     // Anuncia a troca de conteúdo para leitores de tela (a região é role="status").
-    labStatus.textContent = `${example.category}. ${example.title} Barreira: ${example.barrier} Correção: ${example.fix}`;
-=======
-    labStatus.textContent = `Exemplo exibido: ${label}.`;
->>>>>>> 3146c3e3030e2a1da186472d345f4e8851122017
+    // A correção é lida do elemento já renderizado, para não anunciar as tags <code> do texto.
+    labStatus.textContent = `${example.category}. ${example.title} Barreira: ${example.barrier} Correção: ${document.getElementById("lab-fix").textContent}`;
   }
 
   choices.forEach((button) => button.addEventListener("click", () => selectExample(button.dataset.lab)));
