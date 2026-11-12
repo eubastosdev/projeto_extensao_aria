@@ -1,76 +1,76 @@
 1
-00:00:00,000 --> 00:00:03,911
+00:00:00,300 --> 00:00:03,900
 Olá! Eu sou um avatar
 criado por inteligência artificial,
 
 2
-00:00:03,911 --> 00:00:06,724
+00:00:04,100 --> 00:00:06,900
 e vou falar sobre acessibilidade digital.
 
 3
-00:00:07,174 --> 00:00:09,712
+00:00:07,350 --> 00:00:10,100
 Hoje, quase tudo passa pela internet.
 
 4
-00:00:09,712 --> 00:00:14,789
+00:00:10,200 --> 00:00:15,600
 Mas, no Brasil, mais de dezoito milhões
 de pessoas têm alguma deficiência,
 
 5
-00:00:14,789 --> 00:00:20,140
+00:00:15,750 --> 00:00:20,900
 e menos de três em cada cem sites passam
 em todos os testes de acessibilidade.
 
 6
-00:00:20,590 --> 00:00:22,649
+00:00:21,050 --> 00:00:22,950
 A barreira não está na pessoa.
 
 7
-00:00:22,649 --> 00:00:25,324
+00:00:23,050 --> 00:00:25,650
 Está no site feito sem pensar em todos.
 
 8
-00:00:25,774 --> 00:00:27,064
+00:00:25,700 --> 00:00:27,200
 Veja exemplos.
 
 9
-00:00:27,064 --> 00:00:31,318
+00:00:27,550 --> 00:00:31,450
 Uma imagem sem descrição não chega
 a quem usa leitor de telas.
 
 10
-00:00:31,318 --> 00:00:35,160
+00:00:31,550 --> 00:00:35,300
 Um vídeo sem legenda e sem Libras
 exclui pessoas surdas.
 
 11
-00:00:35,160 --> 00:00:39,894
+00:00:35,350 --> 00:00:39,800
 Um botão que só funciona com o mouse
 impede quem navega pelo teclado.
 
 12
-00:00:39,894 --> 00:00:42,501
+00:00:40,300 --> 00:00:42,900
 E pouco contraste dificulta a leitura.
 
 13
-00:00:42,951 --> 00:00:46,998
+00:00:42,950 --> 00:00:46,890
 Engenharia da acessibilidade é planejar,
 construir e testar
 
 14
-00:00:46,998 --> 00:00:50,086
+00:00:46,890 --> 00:00:50,200
 pensando em todas as pessoas,
 desde o início.
 
 15
-00:00:50,536 --> 00:00:53,143
+00:00:50,700 --> 00:00:53,800
 Acessibilidade não é favor. É direito.
 
 16
-00:00:53,143 --> 00:00:56,711
+00:00:53,950 --> 00:00:57,500
 Uma web para todos começa
 nas escolhas de quem cria.
 
 17
-00:00:56,711 --> 00:00:58,000
+00:00:57,550 --> 00:00:59,050
 Faça a sua parte.
