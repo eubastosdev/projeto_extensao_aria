@@ -1,6 +1,6 @@
 Coloque nesta pasta:
 
-video-principal.mp4 — vídeo de apresentação do projeto.
+video-principal.mp4 — vídeo de conscientização sobre acessibilidade digital.
 video-libras.mp4 — versão com interpretação em Libras.
 
 Os dois vídeos tocam sincronizados: grave-os com a mesma duração e começando no mesmo instante.

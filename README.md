@@ -42,6 +42,37 @@ O projeto também reserva espaço para uma apresentação em vídeo acompanhada 
 
 O site foi concebido com navegação por teclado, foco visível, estrutura semântica e opções de leitura como ajuste do tamanho do texto, alto contraste e destaque de links. Esses recursos expressam a proposta do projeto, mas a acessibilidade é um processo contínuo: conteúdos, vídeos e interações devem ser revisados e testados com pessoas que usam diferentes tecnologias e estratégias de acesso.
 
+## Como acessar e executar
+
+O site está publicado em <https://webparatodos.vercel.app>.
+
+Para rodar no seu computador não há instalação nem etapa de build: clone o repositório e abra o arquivo `index.html` no navegador. Para avançar o vídeo pela barra de tempo, use um servidor local que aceite requisições parciais, como a extensão Live Server do VS Code.
+
+## Estrutura do projeto
+
+| Caminho | Conteúdo |
+|---|---|
+| `index.html` | Página única, com todas as seções do site |
+| `css/styles.css` | Estilos, modo de alto contraste e adaptação a telas pequenas |
+| `js/main.js` | Menu de ajustes de leitura, laboratório, quiz e player de vídeo |
+| `images/` | Ícone do site e capas dos vídeos |
+| `legendas/` | Legenda do vídeo em `.vtt`, usada pelo player, e em `.srt` |
+| `videos/` | Vídeo principal; a versão em Libras entra como `video-libras.mp4` |
+
+## Vídeo
+
+O vídeo de conscientização foi gerado na plataforma HeyGen, com avatar e voz sintéticos, a partir de um roteiro autoral. Ele tem legenda sincronizada com a fala e transcrição publicada no site.
+
+A versão em Libras está em produção. Quando o arquivo `videos/video-libras.mp4` for adicionado, o site passa a exibi-la ao lado do vídeo principal, com reprodução sincronizada.
+
+## Como a acessibilidade foi verificada
+
+- Verificação automática com axe-core, nas regras da WCAG 2.2 nível AA, em telas de 320, 375, 768, 1024 e 1280 pixels: nenhuma violação.
+- Navegação completa pela tecla Tab, contraste do foco, texto ampliado ao máximo e modo de alto contraste.
+- Player testado com o vídeo real, incluindo a legenda.
+
+O site ainda não foi testado com leitores de tela reais nem por pessoas com deficiência. Testes automáticos identificam apenas parte dos problemas de acessibilidade.
+
 ## Autoria e licenciamento
 
 **Autoria:** Luiz Ricardo (@eubastosdev).
