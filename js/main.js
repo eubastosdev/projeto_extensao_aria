@@ -107,6 +107,7 @@
   const codePanel = document.getElementById("lab-code");
   const codeButton = document.getElementById("show-code");
   const visual = document.getElementById("lab-visual");
+  const labStatus = document.getElementById("lab-status");
 
   function selectExample(key) {
     const example = examples[key];
@@ -127,6 +128,8 @@
     codePanel.hidden = true;
     codeButton.setAttribute("aria-expanded", "false");
     codeButton.innerHTML = 'Ver exemplo de código <span aria-hidden="true">↓</span>';
+    // Anuncia a troca de conteúdo para leitores de tela (a região é role="status").
+    labStatus.textContent = `${example.category}. ${example.title} Barreira: ${example.barrier} Correção: ${example.fix}`;
   }
 
   choices.forEach((button) => button.addEventListener("click", () => selectExample(button.dataset.lab)));

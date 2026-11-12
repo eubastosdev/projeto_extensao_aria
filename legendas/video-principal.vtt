@@ -1,27 +1,91 @@
 WEBVTT
 
-NOTE Legenda modelo. Revise os tempos e o texto depois de gravar o vídeo.
+NOTE Tempos ESTIMADOS a partir do roteiro. Depois de gerar o áudio final, ajuste cada
+NOTE tempo ao áudio real e confira se o texto é idêntico à locução.
 
-00:00:00.000 --> 00:00:07.000
-Olá! Este é o Web para Todos, um projeto de extensão universitária sobre acessibilidade digital.
+00:00:00.500 --> 00:00:02.500
+Olá! Este é o Web para Todos.
 
-00:00:07.000 --> 00:00:15.000
-A internet conecta pessoas a estudos, trabalho, serviços e convivência.
+00:00:02.850 --> 00:00:07.402
+Um projeto de extensão universitária
+sobre acessibilidade digital.
 
-00:00:15.000 --> 00:00:22.000
-Para que essa conexão seja real, o conteúdo precisa ser acessível a diferentes pessoas.
+00:00:08.202 --> 00:00:12.202
+A internet conecta pessoas a
+estudos, trabalho e serviços.
 
-00:00:22.000 --> 00:00:31.000
-Uma imagem com descrição pode ser compreendida por quem usa leitor de telas.
+00:00:12.552 --> 00:00:15.310
+Uma imagem sem descrição é uma barreira.
 
-00:00:31.000 --> 00:00:40.000
-Um vídeo com legendas, transcrição e Libras oferece mais caminhos para acompanhar a mensagem.
+00:00:15.660 --> 00:00:17.591
+Um vídeo sem legenda também.
 
-00:00:40.000 --> 00:00:49.000
-Um botão que recebe foco e funciona com teclado pode ser usado sem mouse.
+00:00:17.941 --> 00:00:21.252
+Assim como um botão que só
+funciona com o mouse.
 
-00:00:49.000 --> 00:00:58.000
-Acessibilidade começa quando escutamos as pessoas, reconhecemos barreiras e criamos alternativas.
+00:00:21.602 --> 00:00:26.222
+As diretrizes WCAG organizam a
+acessibilidade em quatro princípios:
 
-00:00:58.000 --> 00:01:06.000
-Explore o laboratório, participe do workshop e leve essas práticas para seus próximos projetos.
+00:00:26.572 --> 00:00:29.814
+perceptível, operável,
+compreensível e robusto.
+
+00:00:30.614 --> 00:00:34.614
+No laboratório, você escolhe uma
+barreira e vê a correção.
+
+00:00:34.964 --> 00:00:37.653
+Aqui, uma imagem sem texto alternativo.
+
+00:00:38.003 --> 00:00:41.383
+Quem usa leitor de telas não
+recebe a informação.
+
+00:00:41.733 --> 00:00:45.250
+A correção é descrever o
+essencial no atributo alt.
+
+00:00:46.050 --> 00:00:48.878
+Este site também funciona
+só com teclado.
+
+00:00:49.228 --> 00:00:52.055
+Use Tab para avançar e
+Enter para ativar.
+
+00:00:52.405 --> 00:00:55.302
+O foco aparece destacado em
+cada elemento.
+
+00:00:56.102 --> 00:00:59.274
+No menu Ajustar leitura, você
+aumenta o texto,
+
+00:00:59.624 --> 00:01:02.521
+ativa o alto contraste e
+destaca os links.
+
+00:01:03.321 --> 00:01:07.114
+Este vídeo tem legenda,
+transcrição e versão em Libras.
+
+00:01:07.464 --> 00:01:10.912
+A narração foi gerada por
+inteligência artificial.
+
+00:01:11.712 --> 00:01:15.160
+Acessibilidade começa quando
+escutamos as pessoas,
+
+00:01:15.510 --> 00:01:18.683
+reconhecemos barreiras e
+criamos alternativas.
+
+00:01:19.033 --> 00:01:21.791
+Experimente o laboratório e faça o quiz.
+
+00:01:22.141 --> 00:01:25.590
+Depois, leve essas práticas
+para os seus projetos.
