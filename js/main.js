@@ -58,8 +58,20 @@
   });
   applyPreferences();
 
+  // A altura do cabeçalho fixo muda com a largura da tela e o tamanho do texto.
+  // O CSS usa esse valor para que âncoras e o painel de ajustes não fiquem escondidos atrás dele.
+  const header = document.querySelector(".site-header");
+  const syncHeaderHeight = () => root.style.setProperty("--header-h", `${header.offsetHeight}px`);
+  syncHeaderHeight();
+  if ("ResizeObserver" in window) new ResizeObserver(syncHeaderHeight).observe(header);
+  else window.addEventListener("resize", syncHeaderHeight);
+
   document.addEventListener("click", (event) => {
     if (menu.open && !menu.contains(event.target)) menu.open = false;
+  });
+  // Fecha o painel quando o foco do teclado sai dele, para não cobrir o conteúdo seguinte.
+  menu.addEventListener("focusout", (event) => {
+    if (event.relatedTarget && !menu.contains(event.relatedTarget)) menu.open = false;
   });
   menu.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
@@ -69,12 +81,66 @@
   });
 
   // Os vídeos são fornecidos pela equipe. O placeholder some somente quando um MP4 válido é encontrado.
-  for (const [videoId, shellId] of [["main-video", "main-video-shell"], ["libras-video", "libras-video-shell"]]) {
-    const video = document.getElementById(videoId);
-    const shell = document.getElementById(shellId);
-    video.addEventListener("loadedmetadata", () => shell.classList.add("is-ready"));
-    video.addEventListener("error", () => shell.classList.remove("is-ready"));
+  const mainVideo = document.getElementById("main-video");
+  const librasVideo = document.getElementById("libras-video");
+  const mediaShells = [document.getElementById("main-video-shell"), document.getElementById("libras-video-shell")];
+  const librasCaption = document.getElementById("libras-caption");
+  let syncEnabled = false;
+
+  // A sincronia só liga quando os dois vídeos existem; com um só, o player funciona sozinho.
+  function updateSync() {
+    syncEnabled = mediaShells.every((shell) => shell.classList.contains("is-ready"));
+    if (!syncEnabled) return;
+    librasVideo.muted = true; // O áudio vem do vídeo principal.
+    librasCaption.textContent = "O vídeo em Libras acompanha o vídeo principal: reproduzir, pausar ou avançar um deles controla os dois.";
   }
+
+  [mainVideo, librasVideo].forEach((video, index) => {
+    const shell = mediaShells[index];
+    const setReady = (ready) => { shell.classList.toggle("is-ready", ready); updateSync(); };
+    video.addEventListener("loadedmetadata", () => setReady(true));
+    video.addEventListener("error", () => setReady(false));
+    // Se os metadados chegaram antes deste script rodar, o evento já passou: confira o estado atual.
+    if (video.readyState >= HTMLMediaElement.HAVE_METADATA) setReady(true);
+  });
+
+  // Sincronia nos dois sentidos: quem usa só o player de Libras (por exemplo, em tela cheia) também controla o principal.
+  // Cada espelhamento só age quando há diferença, o que evita que um vídeo fique respondendo ao outro em laço.
+  const maxDrift = 0.3; // segundos de diferença tolerados antes de realinhar
+
+  function mirror(source, target) {
+    // Se o alvo for mais curto e a origem já passou do fim dele, não há o que acompanhar.
+    const canFollow = () => !Number.isFinite(target.duration) || source.currentTime < target.duration - maxDrift;
+    const alignTime = () => {
+      if (canFollow() && Math.abs(target.currentTime - source.currentTime) > maxDrift) target.currentTime = source.currentTime;
+    };
+    const follow = () => {
+      if (!syncEnabled || !target.paused || !canFollow()) return;
+      alignTime();
+      const started = target.play();
+      if (started) started.catch(() => { /* O navegador pode bloquear; o vídeo de origem segue tocando. */ });
+    };
+    source.addEventListener("play", follow);
+    source.addEventListener("pause", () => {
+      if (syncEnabled && !source.ended && !target.paused) target.pause();
+    });
+    source.addEventListener("seeking", () => { if (syncEnabled) alignTime(); });
+    source.addEventListener("ratechange", () => {
+      if (syncEnabled && target.playbackRate !== source.playbackRate) target.playbackRate = source.playbackRate;
+    });
+    return { alignTime, follow };
+  }
+
+  const librasFollowsMain = mirror(mainVideo, librasVideo);
+  mirror(librasVideo, mainVideo);
+  // O principal é a referência: durante a reprodução, corrige pequenos atrasos do vídeo de Libras
+  // e o retoma se ele tiver ficado parado (por exemplo, ao voltar para um trecho que ele cobre).
+  mainVideo.addEventListener("timeupdate", () => {
+    if (!syncEnabled || mainVideo.paused || mainVideo.seeking || librasVideo.seeking) return;
+    librasFollowsMain.alignTime();
+    librasFollowsMain.follow();
+  });
+  mainVideo.addEventListener("ended", () => { if (syncEnabled) librasVideo.pause(); });
 
   const examples = {
     imagem: {
@@ -82,7 +148,7 @@
       title: "A informação está na imagem. E se você não puder vê-la?",
       icon: "✦", visualTitle: "Inscrições abertas", visualDetail: "Workshop de acessibilidade · 18h",
       barrier: "Sem texto alternativo, o conteúdo da imagem pode não chegar a quem usa leitor de telas.",
-      fix: "Descreva a informação essencial no atributo alt ou em texto próximo.",
+      fix: "Descreva a informação essencial no atributo <code>alt</code> ou em texto próximo.",
       code: '<img src="cartaz.jpg" alt="Inscrições abertas para workshop de acessibilidade às 18h">'
     },
     teclado: {
@@ -107,14 +173,17 @@
   const codePanel = document.getElementById("lab-code");
   const codeButton = document.getElementById("show-code");
   const visual = document.getElementById("lab-visual");
+  const labStatus = document.getElementById("lab-status");
 
   function selectExample(key) {
     const example = examples[key];
     if (!example) return;
+    let label = "";
     choices.forEach((button) => {
       const selected = button.dataset.lab === key;
       button.classList.toggle("is-selected", selected);
       button.setAttribute("aria-pressed", String(selected));
+      if (selected) label = button.querySelector("strong").textContent;
     });
     document.getElementById("lab-category").textContent = example.category;
     document.getElementById("lab-demo-title").textContent = example.title;
@@ -122,11 +191,12 @@
     visual.querySelector("strong").textContent = example.visualTitle;
     visual.querySelector("small").textContent = example.visualDetail;
     document.getElementById("lab-barrier").textContent = example.barrier;
-    document.getElementById("lab-fix").textContent = example.fix;
+    document.getElementById("lab-fix").innerHTML = example.fix; // Texto fixo deste arquivo, com <code>.
     codePanel.querySelector("code").textContent = example.code;
     codePanel.hidden = true;
     codeButton.setAttribute("aria-expanded", "false");
     codeButton.innerHTML = 'Ver exemplo de código <span aria-hidden="true">↓</span>';
+    labStatus.textContent = `Exemplo exibido: ${label}.`;
   }
 
   choices.forEach((button) => button.addEventListener("click", () => selectExample(button.dataset.lab)));
