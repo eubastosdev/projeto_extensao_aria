@@ -1,0 +1,9 @@
+Coloque nesta pasta:
+
+video-principal.mp4 — vídeo de apresentação do projeto.
+video-libras.mp4 — versão com interpretação em Libras.
+
+Os dois vídeos tocam sincronizados: grave-os com a mesma duração e começando no mesmo instante.
+O áudio vem do vídeo principal; o de Libras toca sem som (pode ser exportado sem faixa de áudio).
+
+O site mostra uma capa informativa até encontrar cada arquivo. Consulte o README.md na pasta principal.
